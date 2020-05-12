@@ -1,9 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Animation;
 
 namespace TestSimpleIOC
 {
@@ -20,12 +22,26 @@ namespace TestSimpleIOC
 
         public UC1ViewModel()
         {
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<string>(this, receivedString);
+        }
 
+        private void receivedString(string _string)
+        {
+            try
+            {
+                Numero = int.Parse(_string);
+            }
+            catch (Exception ex)
+            {
+                Numero = -999;
+                
+            }
+            
         }
 
         private void sendNumero()
         {
-            throw new NotImplementedException();
+            Messenger.Default.Send<int>(Numero);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,17 @@ namespace TestSimpleIOC
 
         public UC2ViewModel()
         {
+            Messenger.Default.Register<int>(this, receivedInt);
+        }
 
+        private void receivedInt(int _int)
+        {
+            Stringa = _int.ToString();
         }
 
         private void sendStringa()
         {
-            throw new NotImplementedException();
+            Messenger.Default.Send<string>(Stringa);
         }
     }
 }
