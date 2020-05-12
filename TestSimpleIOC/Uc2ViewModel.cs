@@ -23,6 +23,12 @@ namespace TestSimpleIOC
         public UC2ViewModel()
         {
             Messenger.Default.Register<int>(this, receivedInt);
+            Messenger.Default.Register<DoubleMeMessage>(this, receivedDOubleMeMessage);
+        }
+
+        private void receivedDOubleMeMessage(DoubleMeMessage dmm)
+        {
+            dmm.Feedabck(dmm.DoubleMe * 2);
         }
 
         private void receivedInt(int _int)

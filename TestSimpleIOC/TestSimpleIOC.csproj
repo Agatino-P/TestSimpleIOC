@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DoubleMeMessage.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="UC1View.xaml.cs">
